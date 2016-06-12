@@ -2,6 +2,14 @@ class example < ActiveRecord::Base
   include Elasticsearchable
   class NotFound < StandardError; end
 
+#  DEFAULT is like as yml:
+#    default:
+#    page_size: 30
+#    aggs_query: ['prefecture', 'city']
+#    sort_query:
+#      key: 'priority'
+#      order: 'desc'
+
   class << self
     def search (index, search_words: nil, and_or_filters: nil, or_and_filters: nil, range_filters: nil, not_filters: nil,
                         page: 1, per_page: DEFAULT.page_size, aggs: DEFAULT.aggs_query, sort: {DEFAULT.sort_query.key => DEFAULT.sort_query.order})
